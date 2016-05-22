@@ -39,6 +39,8 @@
 
 <div id="map"></div>
 
+<div id="coordinates"></div>
+
 <div class="container">
 
 <div class="nav">
@@ -53,14 +55,16 @@
 
 <script>
     function initMap(){
-      var panorama = new google.maps.StreetViewPanorama(
+        var coordinates = {lat: ((Math.floor((Math.random() * 10) + 1)) + 36), lng: ((Math.floor((Math.random() * 38) + 1)) - 119)};
+        var panorama = new google.maps.StreetViewPanorama(
           document.getElementById('map'), {
-            position: {lat: ((Math.floor((Math.random() * 10) + 1)) - 180), lng: ((Math.floor((Math.random() * 10) + 1)) - 180)},
+            position: coordinates,
             pov: {
               heading: 34,
               pitch: 10
             }
-          });
+        });
+        document.getElementById("coordinates").innerHTML = coordinates;
     }
 </script>
 
