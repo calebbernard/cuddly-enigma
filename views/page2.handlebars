@@ -1,37 +1,37 @@
 <div class="container">
 
-<h1>Google Maps API How-to Guide</h1>
+    <h1>Google Maps API How-to Guide</h1>
 
-<h2>Page 2 - Getting into Street View</h2>
+    <h2>Page 2 - Getting into Street View</h2>
 
-<div class="tutorial">
-    So we know how to embed a map, resize it, and pass it basic parameters.<br />
-    But for our goals, we want to use the street view feature rather than the traditional map.<br />
-</div>
+    <div class="tutorial">
+        So we know how to embed a map, resize it, and pass it basic parameters.<br />
+        But for our goals, we want to use the street view feature rather than the traditional map.<br />
+    </div>
 
-<div class="tutorial">
-    The good news is, this is really similar to making the original map. The main differences are, this is a google.maps.StreetViewPanorama object instead of a google.maps.Map object, and the parameters are a little different. We still pass it coordinates in the same way, but we call it "position" instead of "center". Also, instead of a zoom, we have a pov parameter, which consists of a heading and a pitch. These define your starting camera angle when the map loads. These aren't that important, so we'll leave them be.<br />
-    
-    Our code is now:
-</div>
+    <div class="tutorial">
+        The good news is, this is really similar to making the original map. The main differences are, this is a google.maps.StreetViewPanorama object instead of a google.maps.Map object, and the parameters are a little different. We still pass it coordinates in the same way, but we call it "position" instead of "center". Also, instead of a zoom, we have a pov parameter, which consists of a heading and a pitch. These define your starting camera angle when the map loads. These aren't that important, so we'll leave them be.<br />
 
-    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;map&quot;</span><span style="color: #007700">&gt;&lt;/div&gt;</span>
-<span style="color: #007700">&lt;script&gt;</span>
-    <span style="color: #008800; font-weight: bold">function</span> initMap(){
-      <span style="color: #008800; font-weight: bold">var</span> panorama <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> google.maps.StreetViewPanorama(
-          <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;map&#39;</span>), {
-            position<span style="color: #333333">:</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">44.5638</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">123.2794</span>},
-            pov<span style="color: #333333">:</span> {
-              heading<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">34</span>,
-              pitch<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">10</span>
-            }
-          });
-    }
-<span style="color: #007700">&lt;/script&gt;</span>
+        Our code is now:
+    </div>
 
-<span style="color: #007700">&lt;script </span><span style="color: #0000CC">src=</span><span style="background-color: #fff0f0">&quot;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&quot;</span>
-<span style="color: #0000CC">async</span> <span style="color: #0000CC">defer</span><span style="color: #007700">&gt;&lt;/script&gt;</span>
-</pre></div>
+        <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;map&quot;</span><span style="color: #007700">&gt;&lt;/div&gt;</span>
+    <span style="color: #007700">&lt;script&gt;</span>
+        <span style="color: #008800; font-weight: bold">function</span> initMap(){
+          <span style="color: #008800; font-weight: bold">var</span> panorama <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> google.maps.StreetViewPanorama(
+              <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;map&#39;</span>), {
+                position<span style="color: #333333">:</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">44.5638</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">123.2794</span>},
+                pov<span style="color: #333333">:</span> {
+                  heading<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">34</span>,
+                  pitch<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">10</span>
+                }
+              });
+        }
+    <span style="color: #007700">&lt;/script&gt;</span>
+
+    <span style="color: #007700">&lt;script </span><span style="color: #0000CC">src=</span><span style="background-color: #fff0f0">&quot;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&quot;</span>
+    <span style="color: #0000CC">async</span> <span style="color: #0000CC">defer</span><span style="color: #007700">&gt;&lt;/script&gt;</span>
+    </pre></div>
 
 
     
@@ -41,13 +41,14 @@
 
 <div class="container">
 
-<div class="nav">
-    <a href="/page1">Previous Page</a>
-</div>
-
-<div class="nav">
-    <a href="/page3">Next Page</a>
-</div>
+    <div class="nav">
+        <h3>
+            <center>
+                <a href="/page1">Previous Page</a> - 
+                <a href="/page3">Next Page</a>
+            </center>
+        </h3>
+    </div>
     
 </div>
 

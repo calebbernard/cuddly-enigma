@@ -1,71 +1,71 @@
 <div class="container">
 
-<h1>Google Maps API How-to Guide</h1>
+    <h1>Google Maps API How-to Guide</h1>
 
-<h2>Page 4 - Polishing our Map</h2>
+    <h2>Page 4 - Polishing our Map</h2>
 
-<div class="tutorial">
-    In this step, we polish the UI a bit. For instance, we get rid of that pesky address block giving away the location. Furthermore, we could remove the arrow prompts showing you possible move options, but I chose not to here since those are the only way to navigate the map on mobile. However, since they can give street names away, I will show you how to hide them if you want, along with other UI features.<br />
-    
-</div>
-<div class="tutorial">
-    In addition, we'll randomize the heading so that we're pointing in a random direction every time. We don't need to randomize the pitch as far as I'm concerned since it already has you looking at a reasonable angle, but you can randomize it in the same way we do heading. (Pitch ranges from 90 which is straight up to -90, straight down).
-    
-    Our code is now:
-</div>
+    <div class="tutorial">
+        In this step, we polish the UI a bit. For instance, we get rid of that pesky address block giving away the location. Furthermore, we could remove the arrow prompts showing you possible move options, but I chose not to here since those are the only way to navigate the map on mobile. However, since they can give street names away, I will show you how to hide them if you want, along with other UI features.<br />
 
-    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;map&quot;</span><span style="color: #007700">&gt;&lt;/div&gt;</span>
+    </div>
+    <div class="tutorial">
+        In addition, we'll randomize the heading so that we're pointing in a random direction every time. We don't need to randomize the pitch as far as I'm concerned since it already has you looking at a reasonable angle, but you can randomize it in the same way we do heading. (Pitch ranges from 90 which is straight up to -90, straight down).
 
-<span style="color: #007700">&lt;script&gt;</span>
-    <span style="color: #008800; font-weight: bold">function</span> initMap(){
-        <span style="color: #008800; font-weight: bold">var</span> osu <span style="color: #333333">=</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">44.561962</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">123.279650</span>};
-        <span style="color: #008800; font-weight: bold">var</span> statue <span style="color: #333333">=</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">40.69034677176927</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">74.0463689672561</span>};
-        <span style="color: #008800; font-weight: bold">var</span> canyon <span style="color: #333333">=</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">36.10111723671108</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">112.0954389500144</span>}
-        <span style="color: #008800; font-weight: bold">var</span> coordinates <span style="color: #333333">=</span> [osu, statue, canyon];
-        <span style="color: #008800; font-weight: bold">var</span> pos <span style="color: #333333">=</span> coordinates[(<span style="color: #007020">Math</span>.floor(<span style="color: #007020">Math</span>.random()<span style="color: #333333">*</span>coordinates.length))];
-        <span style="color: #008800; font-weight: bold">var</span> dir <span style="color: #333333">=</span> <span style="color: #007020">Math</span>.floor(<span style="color: #007020">Math</span>.random()<span style="color: #333333">*</span><span style="color: #0000DD; font-weight: bold">360</span>);
-        <span style="color: #008800; font-weight: bold">var</span> panorama <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> google.maps.StreetViewPanorama(
-          <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;map&#39;</span>), {
-            position<span style="color: #333333">:</span> pos,
-            pov<span style="color: #333333">:</span> {
-              heading<span style="color: #333333">:</span> dir,
-              pitch<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">10</span>
-            },
-            addressControl<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">false</span>,
-            <span style="color: #888888">//linksControl: false,</span>
-            <span style="color: #888888">//imageDateControl: false,</span>
-            <span style="color: #888888">//panControl: false,</span>
-            <span style="color: #888888">//zoomControl: false,</span>
-            <span style="color: #888888">//disableDefaultUI: true</span>
-        });
-    }
-<span style="color: #007700">&lt;/script&gt;</span>
+        Our code is now:
+    </div>
 
-<span style="color: #007700">&lt;script </span><span style="color: #0000CC">src=</span><span style="background-color: #fff0f0">&quot;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&quot;</span>
-<span style="color: #0000CC">async</span> <span style="color: #0000CC">defer</span><span style="color: #007700">&gt;&lt;/script&gt;</span>
-</pre></div>
+        <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;map&quot;</span><span style="color: #007700">&gt;&lt;/div&gt;</span>
 
-<div class="tutorial">
-    What we've done here is:
-    <ul>
-        <li>
-            Put the heading in a var which is randomized among 360 options, then passed in that var for the parameter
-        </li>
-        <li>
-            Added commented-out parameters. If you uncomment any of those, it will disable that UI element in the panorama.
-        </li>
-        <li>
-            linksControl is in charge of whether those arrows appear. Uncomment it to get rid of them. It's still possible to navigate on a computer by clicking where you want to go, but I couldn't get that to work on my iPhone.
-        </li>
-    </ul>
-</div>
-<div class="tutorial">
-    If you want to get rid of all the UI elements possible, you can simply uncomment the disableDefaultUI line. It also allows you to pass in individual UI elements as true afterwards, so that could be handy if you only want 1 element - just set disableDefaultUI to true, and then also set the one element you want to keep to true as well.<br />
-</div>
+    <span style="color: #007700">&lt;script&gt;</span>
+        <span style="color: #008800; font-weight: bold">function</span> initMap(){
+            <span style="color: #008800; font-weight: bold">var</span> osu <span style="color: #333333">=</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">44.561962</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">123.279650</span>};
+            <span style="color: #008800; font-weight: bold">var</span> statue <span style="color: #333333">=</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">40.69034677176927</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">74.0463689672561</span>};
+            <span style="color: #008800; font-weight: bold">var</span> canyon <span style="color: #333333">=</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">36.10111723671108</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">112.0954389500144</span>}
+            <span style="color: #008800; font-weight: bold">var</span> coordinates <span style="color: #333333">=</span> [osu, statue, canyon];
+            <span style="color: #008800; font-weight: bold">var</span> pos <span style="color: #333333">=</span> coordinates[(<span style="color: #007020">Math</span>.floor(<span style="color: #007020">Math</span>.random()<span style="color: #333333">*</span>coordinates.length))];
+            <span style="color: #008800; font-weight: bold">var</span> dir <span style="color: #333333">=</span> <span style="color: #007020">Math</span>.floor(<span style="color: #007020">Math</span>.random()<span style="color: #333333">*</span><span style="color: #0000DD; font-weight: bold">360</span>);
+            <span style="color: #008800; font-weight: bold">var</span> panorama <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> google.maps.StreetViewPanorama(
+              <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;map&#39;</span>), {
+                position<span style="color: #333333">:</span> pos,
+                pov<span style="color: #333333">:</span> {
+                  heading<span style="color: #333333">:</span> dir,
+                  pitch<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">10</span>
+                },
+                addressControl<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">false</span>,
+                <span style="color: #888888">//linksControl: false,</span>
+                <span style="color: #888888">//imageDateControl: false,</span>
+                <span style="color: #888888">//panControl: false,</span>
+                <span style="color: #888888">//zoomControl: false,</span>
+                <span style="color: #888888">//disableDefaultUI: true</span>
+            });
+        }
+    <span style="color: #007700">&lt;/script&gt;</span>
 
-<div class="tutorial">
-    At this point, the code is looking good. The final element we need is an option for the user to be able to make a guess once they figure out where they are, and then be told whether they win or lose.
-</div>
+    <span style="color: #007700">&lt;script </span><span style="color: #0000CC">src=</span><span style="background-color: #fff0f0">&quot;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&quot;</span>
+    <span style="color: #0000CC">async</span> <span style="color: #0000CC">defer</span><span style="color: #007700">&gt;&lt;/script&gt;</span>
+    </pre></div>
+
+    <div class="tutorial">
+        What we've done here is:
+        <ul>
+            <li>
+                Put the heading in a var which is randomized among 360 options, then passed in that var for the parameter
+            </li>
+            <li>
+                Added commented-out parameters. If you uncomment any of those, it will disable that UI element in the panorama.
+            </li>
+            <li>
+                linksControl is in charge of whether those arrows appear. Uncomment it to get rid of them. It's still possible to navigate on a computer by clicking where you want to go, but I couldn't get that to work on my iPhone.
+            </li>
+        </ul>
+    </div>
+    <div class="tutorial">
+        If you want to get rid of all the UI elements possible, you can simply uncomment the disableDefaultUI line. It also allows you to pass in individual UI elements as true afterwards, so that could be handy if you only want 1 element - just set disableDefaultUI to true, and then also set the one element you want to keep to true as well.<br />
+    </div>
+
+    <div class="tutorial">
+        At this point, the code is looking good. The final element we need is an option for the user to be able to make a guess once they figure out where they are, and then be told whether they win or lose.
+    </div>
     
 </div>
 
@@ -73,13 +73,14 @@
 
 <div class="container">
 
-<div class="nav">
-    <a href="/page3">Previous Page</a>
-</div>
-
-<div class="nav">
-    <a href="/page5">Next Page</a>
-</div>
+    <div class="nav">
+            <h3>
+                <center>
+                    <a href="/page3">Previous Page</a> - 
+                    <a href="/page5">Next Page</a>
+                </center>
+            </h3>
+        </div>
     
 </div>
 

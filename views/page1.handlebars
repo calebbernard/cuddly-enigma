@@ -1,64 +1,64 @@
 <div class="container">
 
-<h1>Google Maps API How-to Guide</h1>
+    <h1>Google Maps API How-to Guide</h1>
 
-<h2>Page 1 - Setup</h2>
+    <h2>Page 1 - Setup</h2>
 
-<div class="tutorial">
-    We're going to explore the Google Maps library by setting up a simple game similar to <b><a href="https://www.geoguessr.com">Geoguessr</a></b>.<br />
-    First let's get the Google Maps embed up and running. You'll need an <a href="https://console.developers.google.com/flows/enableapi?apiid=maps_backend,geocoding_backend,directions_backend,distance_matrix_backend,elevation_backend&keyType=CLIENT_SIDE&reusekey=true">API Key</a> - that link should work but a bit of searching will get you there easily enough otherwise.
-</div>
+    <div class="tutorial">
+        We're going to explore the Google Maps library by setting up a simple game similar to <b><a href="https://www.geoguessr.com">Geoguessr</a></b>.<br />
+        First let's get the Google Maps embed up and running. You'll need an <a href="https://console.developers.google.com/flows/enableapi?apiid=maps_backend,geocoding_backend,directions_backend,distance_matrix_backend,elevation_backend&keyType=CLIENT_SIDE&reusekey=true">API Key</a> - that link should work but a bit of searching will get you there easily enough otherwise.
+    </div>
 
-<br />
+    <br />
 
-<div class="tutorial">
-    Armed with our API Key, let's embed a map! This will take a few simple chunks of code (Code snippets formatted by <a href="http://hilite.me/">hilite.me</a>): <br />
-</div>
-    
-   <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #333333">&lt;</span><span style="color: #007700">style</span><span style="color: #333333">&gt;</span>
-      <span style="color: #007700">html</span><span style="color: #333333">,</span> <span style="color: #007700">body</span> {
-        <span style="color: #008800; font-weight: bold">height</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">100</span><span style="color: #333333">%</span>;
-        <span style="color: #008800; font-weight: bold">margin</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">0</span>;
-        <span style="color: #008800; font-weight: bold">padding</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">0</span>;
+    <div class="tutorial">
+        Armed with our API Key, let's embed a map! This will take a few simple chunks of code (Code snippets formatted by <a href="http://hilite.me/">hilite.me</a>): <br />
+    </div>
+
+       <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #333333">&lt;</span><span style="color: #007700">style</span><span style="color: #333333">&gt;</span>
+          <span style="color: #007700">html</span><span style="color: #333333">,</span> <span style="color: #007700">body</span> {
+            <span style="color: #008800; font-weight: bold">height</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">100</span><span style="color: #333333">%</span>;
+            <span style="color: #008800; font-weight: bold">margin</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">0</span>;
+            <span style="color: #008800; font-weight: bold">padding</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">0</span>;
+          }
+          <span style="color: #0066BB; font-weight: bold">#map</span> {
+            <span style="color: #008800; font-weight: bold">height</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">50</span><span style="color: #333333">%</span>;
+            <span style="color: #008800; font-weight: bold">width</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">50</span><span style="color: #333333">%</span>;
+          }
+    <span style="color: #333333">&lt;/</span><span style="color: #007700">style</span><span style="color: #333333">&gt;</span>
+    </pre></div>
+
+
+
+    <div class="tutorial">
+        This bit of CSS helps us size the map - the #map section is the relevant part. I set it to 50% height and width.<br />
+        Next, we want to add a div to hold our map to the html.
+    </div>
+
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;map&quot;</span><span style="color: #007700">&gt;&lt;/div&gt;</span>
+    </pre></div>
+
+    <div class="tutorial">
+        With that done, we've got a chunk of Javascript boilerplate to drop in which actually loads the map:
+    </div>
+
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;script&gt;</span>
+      <span style="color: #008800; font-weight: bold">var</span> map;
+      <span style="color: #008800; font-weight: bold">function</span> initMap() {
+        map <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> google.maps.Map(<span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;map&#39;</span>), {
+          center<span style="color: #333333">:</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">44.5638</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">123.2794</span>},
+          zoom<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">14</span>
+        });
       }
-      <span style="color: #0066BB; font-weight: bold">#map</span> {
-        <span style="color: #008800; font-weight: bold">height</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">50</span><span style="color: #333333">%</span>;
-        <span style="color: #008800; font-weight: bold">width</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">50</span><span style="color: #333333">%</span>;
-      }
-<span style="color: #333333">&lt;/</span><span style="color: #007700">style</span><span style="color: #333333">&gt;</span>
-</pre></div>
+    <span style="color: #007700">&lt;/script&gt;</span>
+    <span style="color: #007700">&lt;script </span><span style="color: #0000CC">src=</span><span style="background-color: #fff0f0">&quot;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&quot;</span>
+    <span style="color: #0000CC">async</span> <span style="color: #0000CC">defer</span><span style="color: #007700">&gt;&lt;/script&gt;</span>
+    </pre></div>
 
 
-
-<div class="tutorial">
-    This bit of CSS helps us size the map - the #map section is the relevant part. I set it to 50% height and width.<br />
-    Next, we want to add a div to hold our map to the html.
-</div>
-
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;map&quot;</span><span style="color: #007700">&gt;&lt;/div&gt;</span>
-</pre></div>
-
-<div class="tutorial">
-    With that done, we've got a chunk of Javascript boilerplate to drop in which actually loads the map:
-</div>
-
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;script&gt;</span>
-  <span style="color: #008800; font-weight: bold">var</span> map;
-  <span style="color: #008800; font-weight: bold">function</span> initMap() {
-    map <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> google.maps.Map(<span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;map&#39;</span>), {
-      center<span style="color: #333333">:</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">44.5638</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">123.2794</span>},
-      zoom<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">14</span>
-    });
-  }
-<span style="color: #007700">&lt;/script&gt;</span>
-<span style="color: #007700">&lt;script </span><span style="color: #0000CC">src=</span><span style="background-color: #fff0f0">&quot;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&quot;</span>
-<span style="color: #0000CC">async</span> <span style="color: #0000CC">defer</span><span style="color: #007700">&gt;&lt;/script&gt;</span>
-</pre></div>
-
-
-<div class="tutorial">
-    This produces the following result:
-</div>
+    <div class="tutorial">
+        This produces the following result:
+    </div>
     
 </div>
 
@@ -66,24 +66,28 @@
 
 <div class="container">
     
-<div class="tutorial">
-    A nice map. We have 2 necessary parameters here: Our center coordinates, and our zoom level.<br />
-    The coordinates are straightforward, just remember that E-W goes is longitude and N-S is latitude, and that South and West require a negative sign.<br />
-    For the zoom, there are 20 levels. Google's documentation says that roughly you can expect to see the world at zoom 1, a continent at zoom 5, a city at zoom 10, streets at zoom 15, and buildings at zoom 20.<br />
-    Here at zoom 14, we have a good view of the OSU campus and the surrounding area.
-</div>
+    <div class="tutorial">
+        A nice map. We have 2 necessary parameters here: Our center coordinates, and our zoom level.<br />
+        The coordinates are straightforward, just remember that E-W goes is longitude and N-S is latitude, and that South and West require a negative sign.<br />
+        For the zoom, there are 20 levels. Google's documentation says that roughly you can expect to see the world at zoom 1, a continent at zoom 5, a city at zoom 10, streets at zoom 15, and buildings at zoom 20.<br />
+        Here at zoom 14, we have a good view of the OSU campus and the surrounding area.
+    </div>
 
-<div class="tutorial">
-    Notes:<br />
-    <ul>
-        <li>You can name the function whatever you like, so long as you also update the API request to reference it as the callback.</li>
-        <li>If you change the div id for the map, remember to update your CSS as well.</li>
-    </ul>
-</div>
+    <div class="tutorial">
+        Notes:<br />
+        <ul>
+            <li>You can name the function whatever you like, so long as you also update the API request to reference it as the callback.</li>
+            <li>If you change the div id for the map, remember to update your CSS as well.</li>
+        </ul>
+    </div>
 
-<div class="nav">
-    <a href="/page2">Next Page</a>
-</div>
+    <div class="nav">
+        <h3>
+            <center>
+                <a href="/page2">Next Page</a>
+            </center>
+        </h3>
+    </div>
 
 </div>
 
