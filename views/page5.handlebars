@@ -71,7 +71,7 @@
             //disableDefaultUI: true
         });
         for (x in coordinates) {
-            document.getElementById("guess").innerHTML += "<option value=" + coordinates[x].name + ">" + coordinates[x].name + "</option>"
+            document.getElementById("guess").innerHTML += "<option value=" + "'" + coordinates[x].name + "'" + ">" + coordinates[x].name + "</option>"
         }
         document.getElementById("answer").innerHTML += pos.name;
     }
