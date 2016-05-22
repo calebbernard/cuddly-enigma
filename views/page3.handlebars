@@ -55,17 +55,18 @@
 
 <script>
     function initMap(){
-        var coordinates = {lat: (44.53 + (Math.floor((Math.random() * 5) + 1) / 100)), lng: (-123.25 + (Math.floor((Math.random() * 5) + 1) / 100))};
+        var coordinates = [{lat: 44.561962, lng: -123.279650}, {lat: 40.69034677176927, lng: -74.0463689672561}, {lat: 36.10111723671108, lng: -112.0954389500144}];
+        var pos = coordinates[(Math.random()*3)]
         var panorama = new google.maps.StreetViewPanorama(
           document.getElementById('map'), {
-            position: coordinates,
+            position: pos,
             pov: {
               heading: 34,
               pitch: 10
             }
         });
-        document.getElementById("coordinates").innerHTML = coordinates.lat;
-        document.getElementById("coordinates").innerHTML += coordinates.lng;
+        document.getElementById("coordinates").innerHTML = pos.lat;
+        document.getElementById("coordinates").innerHTML += pos.lng;
     }
 </script>
 
