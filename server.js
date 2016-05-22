@@ -14,7 +14,7 @@ app.set('view engine', 'handlebars');
 app.set('port', 3000);
 
 app.get('/', function(req,res){
-	res.render('crawler')
+	res.render('page1')
 });
 
 app.use(function(req,res){
