@@ -18,6 +18,14 @@
 
 <div class="container">
 
+<div>
+    <form action="" method="GET">
+        <select id="guess">
+        </select>
+        <input type="submit" />
+    </form>
+</div>
+    
 <div class="nav">
     <a href="/page4">Previous Page</a>
 </div>
@@ -50,6 +58,10 @@
             //zoomControl: false,
             //disableDefaultUI: true
         });
+        for (x in coordinates) {
+            document.getElementById("guess").innerHTML += "<option value=" + coordinates[x].name + ">" + coordinates[x].name + "</option>"
+        }
+        
     }
 </script>
 
