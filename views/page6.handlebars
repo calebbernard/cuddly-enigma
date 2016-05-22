@@ -1,0 +1,80 @@
+<div class="container">
+
+    <h1>Google Maps API How-to Guide</h1>
+
+    <h2>Page 6 - The Final Game</h2>
+
+    </div>
+
+    <div id="map"></div>
+
+    <div class="container">
+
+    <div>
+        <form id="form" action="" method="GET">
+            <select id="guess">
+            </select>
+            <input type="submit" id="submit" />
+        </form>
+    </div>
+
+    <div id="answer" style="display: none"></div>
+
+    <div id="results"></div>
+
+    <div class="nav">
+        <a href="/page5">Previous Page</a>
+    </div>
+    
+</div>
+
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function(event) {
+        document.getElementById("submit").addEventListener("click", check_guess);
+    });
+    
+    function initMap(){
+        var osu = {name: "OSU Campus", coord: {lat: 44.561962, lng: -123.279650}};
+        var statue = {name: "Liberty Island", coord: {lat: 40.69034677176927, lng: -74.0463689672561}};
+        var canyon = {name: "Grand Canyon", coord: {lat: 36.10111723671108, lng: -112.0954389500144}};
+        var rushmore = {name: "Mount Rushmore", coord: {lat: 43.87795357549694, lng: -103.4581850210121}};
+        var eiffel = {name: "Eiffel Tower", coord: {lat: 48.85689792797896, lng: 2.293287706824658}};
+        var coordinates = [osu, statue, canyon, rushmore, eiffel];
+        var pos = coordinates[(Math.floor(Math.random()*coordinates.length))];
+        var pos_coord = pos.coord;
+        var dir = Math.floor(Math.random()*360);
+        var panorama = new google.maps.StreetViewPanorama(
+          document.getElementById('map'), {
+            position: pos_coord,
+            pov: {
+              heading: dir,
+              pitch: 10
+            },
+            addressControl: false,
+            //linksControl: false,
+            //imageDateControl: false,
+            //panControl: false,
+            //zoomControl: false,
+            //disableDefaultUI: true
+        });
+        for (x in coordinates) {
+            document.getElementById("guess").innerHTML += "<option value=" + "'" + coordinates[x].name + "'" + ">" + coordinates[x].name + "</option>"
+        }
+        document.getElementById("answer").innerHTML += pos.name;
+    }
+    
+    function check_guess(){
+        event.preventDefault();
+        document.getElementById("form").style = "display: none";
+        var guess = document.getElementById("guess").value;
+        var answer = document.getElementById("answer").innerHTML;
+        if (guess == answer){
+            document.getElementById("results").innerHTML = "<h1>You got it!</h1><div><form action='/page5' method='GET'><input type='submit' value='Try Again' /></form></div>";
+        } else {
+            document.getElementById("results").innerHTML = "<h1>You failed...</h1><div><form action='/page5' method='GET'><input type='submit' value='Try Again' /></form></div>";
+        }
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLSWmihkL45ufBKGUKkUvA2Metjr5aky0&callback=initMap" async defer></script>
