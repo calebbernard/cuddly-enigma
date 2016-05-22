@@ -2,6 +2,13 @@
 
 <h2>Page 2 - Getting into Street View</h2>
 
+<div class="tutorial">
+    So we know how to embed a map, resize it, and pass it basic parameters.<br />
+    But for our goals, we want to use the street view feature rather than the traditional map.<br />
+</div>
+
+<div id="map"></div>
+<div id="pano"></div>
 
 <div class="nav">
     <a href="/page1">Previous Page</a>
@@ -10,3 +17,23 @@
 <div class="nav">
     <a href="/page3">Next Page</a>
 </div>
+<script>
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 44.5638, lng: -123.2794},
+        zoom: 14
+      });
+      var panorama = new google.maps.StreetViewPanorama(
+          document.getElementById('pano'), {
+            position: fenway,
+            pov: {
+              heading: 34,
+              pitch: 10
+            }
+          });
+      map.setStreetView(panorama);
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLSWmihkL45ufBKGUKkUvA2Metjr5aky0&callback=initMap"
+async defer></script>
