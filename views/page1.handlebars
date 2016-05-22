@@ -3,8 +3,31 @@
 <h3>Page 1 - Setup</h3>
 
 <div>
-We're going to explore the Google Maps library by setting up a simple game similar to <a href="https://www.geoguessr.com">Geoguessr</a>.
+    We're going to explore the Google Maps library by setting up a simple game similar to <b><a href="https://www.geoguessr.com">Geoguessr</a></b>.<br />
+    First let's get the Google Maps embed up and running. First you'll need an <a href="https://console.developers.google.com/flows/enableapi?apiid=maps_backend,geocoding_backend,directions_backend,distance_matrix_backend,elevation_backend&keyType=CLIENT_SIDE&reusekey=true">API Key</a> - that link should work but a bit of searching will get you there easily enough.
 </div>
+
+<br />
+
+<div>
+    Armed with our API Key, let's embed a map! This will take two simple chunks of code: <br />
+    <code>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 50%;
+        width: 50%;
+      }
+    </style>
+    </code>
+    <br />
+    This bit of CSS helps us
+</div>
+
 
 <div id="map"></div>
 <script>
