@@ -33,6 +33,10 @@ app.get('/page4', function(req,res){
     res.render('page4')
 });
 
+app.get('/page5', function(req,res){
+    res.render('page5')
+});
+
 app.use(function(req,res){
 	res.status(404);
 	res.render('404');

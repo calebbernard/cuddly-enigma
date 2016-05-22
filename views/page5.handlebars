@@ -1,0 +1,56 @@
+<div class="container">
+
+<h1>Google Maps API How-to Guide</h1>
+
+<h2>Page 5 - Putting the Guess in GeoGuessr!</h2>
+
+<div class="tutorial">
+    By this stage, I've got the Google Panorama looking exactly how I want it - now we just need to add a way for the user to enter their guess!
+</div>
+    
+<div class="tutorial">
+    Naturally, it'd be ideal from a DRY perspective to have our coordinate array for the map and the guessing list for the user to both draw from the same source. For this reason, I'm going to modify our coordinate structure a bit.
+</div>
+    
+</div>
+
+<div id="map"></div>
+
+<div class="container">
+
+<div class="nav">
+    <a href="/page4">Previous Page</a>
+</div>
+
+<div class="nav">
+    <a href="/page6">Next Page</a>
+</div>
+    
+</div>
+
+<script>
+    function initMap(){
+        var osu = {name: "OSU Campus", coord: {lat: 44.561962, lng: -123.279650}};
+        var statue = {name: "Liberty Island", coord: {lat: 40.69034677176927, lng: -74.0463689672561}};
+        var canyon ={name: "Grand Canyon", coord: {lat: 36.10111723671108, lng: -112.0954389500144}};
+        var coordinates = [osu, statue, canyon];
+        var pos = coordinates[(Math.floor(Math.random()*coordinates.length))].coord;
+        var dir = Math.floor(Math.random()*360);
+        var panorama = new google.maps.StreetViewPanorama(
+          document.getElementById('map'), {
+            position: pos,
+            pov: {
+              heading: dir,
+              pitch: 10
+            },
+            addressControl: false,
+            //linksControl: false,
+            //imageDateControl: false,
+            //panControl: false,
+            //zoomControl: false,
+            //disableDefaultUI: true
+        });
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLSWmihkL45ufBKGUKkUvA2Metjr5aky0&callback=initMap" async defer></script>
