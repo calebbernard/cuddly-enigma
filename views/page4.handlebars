@@ -52,11 +52,11 @@
 <div class="container">
 
 <div class="nav">
-    <a href="/page2">Previous Page</a>
+    <a href="/page3">Previous Page</a>
 </div>
 
 <div class="nav">
-    <a href="/page4">Next Page</a>
+    <a href="/page5">Next Page</a>
 </div>
     
 </div>
@@ -68,11 +68,12 @@
         var canyon = {lat: 36.10111723671108, lng: -112.0954389500144}
         var coordinates = [osu, statue, canyon];
         var pos = coordinates[(Math.floor(Math.random()*coordinates.length))];
+        var dir = Math.floor(Math.random()*360);
         var panorama = new google.maps.StreetViewPanorama(
           document.getElementById('map'), {
             position: pos,
             pov: {
-              heading: 34,
+              heading: dir,
               pitch: 10
             }
         });
