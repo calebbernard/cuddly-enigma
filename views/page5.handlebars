@@ -76,8 +76,8 @@
     
     function check_guess(){
         event.preventDefault();
-        document.getElementById("form").style += "display: none";
-        var guess = document.getElementById("guess").value;
+        document.getElementById("form").style = "display: none";
+        var guess = document.getElementById("guess").options.selectedIndex.value;
         var answer = document.getElementById("answer").innerHTML;
         if (guess == answer){
             document.getElementById("results").innerHTML = "<h1>You got it!</h1>";
