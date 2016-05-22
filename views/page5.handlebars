@@ -80,9 +80,9 @@
         var guess = document.getElementById("guess").value;
         var answer = document.getElementById("answer").innerHTML;
         if (guess == answer){
-            document.getElementById("results").innerHTML = "<h1>You got it!</h1>";
+            document.getElementById("results").innerHTML = "<h1>You got it!</h1><div><form action='/' method='GET'><input type='submit' value='Try Again' /></form></div>";
         } else {
-            document.getElementById("results").innerHTML = "<h1>You failed...</h1>";
+            document.getElementById("results").innerHTML = "<h1>You failed...</h1><div><form action='/' method='GET'><input type='submit' value='Try Again' /></form></div>";
         }
     }
 </script>
