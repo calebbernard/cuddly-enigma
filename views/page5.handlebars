@@ -74,7 +74,29 @@
 <span style="color: #007700">&lt;script </span><span style="color: #0000CC">src=</span><span style="background-color: #fff0f0">&quot;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&quot;</span> <span style="color: #0000CC">async</span> <span style="color: #0000CC">defer</span><span style="color: #007700">&gt;&lt;/script&gt;</span>
 </pre></div>
 
-
+<div class="tutorial">
+    This might seem like a daunting block of code, but the additions are just basic Javascript like you already know.<br />
+    <ul>
+        <li>
+            We've added a name property to the coordinate objects. This will help us track whether the user's guessed location matches the coordinates shown, and will also help us populate the user's guess form in the first place.
+        </li>
+        <li>
+            We used a for...in loop to populate the dropdown with the name properties of each location object in coordinates.
+        </li>
+        <li>
+            We added simple Javascript to catch the form submission and check the answer, then add a results message and a try again button.
+        </li>
+    </ul>
+</div>
+    
+<div class="tutorial">
+    This concludes our journey in building a Geoguessr clone! Hopefully you now have a good understanding of both the basic steps to take, as well as the customization options at your disposal.
+</div>
+    
+<div class="tutorial">
+    The next, final page is the finished game, with more locations and no pesky text or code blocks in your way.
+</div>
+    
 </div>
 
 <div id="map"></div>
