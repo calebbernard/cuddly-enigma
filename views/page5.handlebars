@@ -19,12 +19,16 @@
 <div class="container">
 
 <div>
-    <form action="" method="GET">
+    <form id="form" action="" method="GET">
         <select id="guess">
         </select>
         <input type="submit" />
     </form>
 </div>
+    
+<div id="answer" style="display: none"></div>
+
+<div id="results"></div>
     
 <div class="nav">
     <a href="/page4">Previous Page</a>
@@ -42,11 +46,12 @@
         var statue = {name: "Liberty Island", coord: {lat: 40.69034677176927, lng: -74.0463689672561}};
         var canyon ={name: "Grand Canyon", coord: {lat: 36.10111723671108, lng: -112.0954389500144}};
         var coordinates = [osu, statue, canyon];
-        var pos = coordinates[(Math.floor(Math.random()*coordinates.length))].coord;
+        var pos = coordinates[(Math.floor(Math.random()*coordinates.length))];
+        var pos_coord = pos.coord;
         var dir = Math.floor(Math.random()*360);
         var panorama = new google.maps.StreetViewPanorama(
           document.getElementById('map'), {
-            position: pos,
+            position: pos_coord,
             pov: {
               heading: dir,
               pitch: 10
@@ -61,7 +66,19 @@
         for (x in coordinates) {
             document.getElementById("guess").innerHTML += "<option value=" + coordinates[x].name + ">" + coordinates[x].name + "</option>"
         }
-        
+        document.getElementById("answer").innerHTML += pos.name;
+    }
+    
+    function check_guess(){
+        event.preventDefault();
+        document.getElementById("form").style += "display: none";
+        var guess = document.getElementById("guess").value;
+        var answer = document.getElementById("answer").value;
+        if (guess == answer){
+            document.getElementById("results").innerHTML = "<h1>You got it!</h1>";
+        } else {
+            document.getElementById("results").innerHTML = "<h1>You failed...</h1>";
+        }
     }
 </script>
 
