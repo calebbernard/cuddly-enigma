@@ -10,22 +10,30 @@
 </div>
 
 <div class="tutorial">
-    The good news is, this is really similar to making the original map. The main differences are, this is a google.maps.StreetViewPanorama object instead of a google.maps.Map object, and the parameters are a little different. We still pass it coordinates in the same way, but we call it "position" instead of "center". Also, instead of a zoom, we have a pov parameter, which consists of a heading and a pitch. These define your starting camera angle when the map loads. These aren't that important, so we'll leave them be.<br />
+    I chose three coordinates as a test set for this stage of our code. They represent the OSU campus, Liberty Island, and the Grand Canyon. Feel free to refresh this page until you have seen all three possibilities.<br />
+    After having chosen these locations, I went to <a href="http://maps.google.com">Google Maps</a> and found each location, then went to street view by clicking the yellow person and then on a suitable street in my desired location. Then I hit the "drop a pin" button, and found the coordinates of the pin. These are then loaded into an array of positions in our code, and the javascript Math.random() function chooses a set of coordinates at random, then passes it into the google maps panorama parameters.
     
     Our code is now:
 </div>
-
-    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;map&quot;</span><span style="color: #007700">&gt;&lt;/div&gt;</span>
+    
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;map&quot;</span><span style="color: #007700">&gt;&lt;/div&gt;</span>
 <span style="color: #007700">&lt;script&gt;</span>
     <span style="color: #008800; font-weight: bold">function</span> initMap(){
-      <span style="color: #008800; font-weight: bold">var</span> panorama <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> google.maps.StreetViewPanorama(
+        <span style="color: #008800; font-weight: bold">var</span> osu <span style="color: #333333">=</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">44.561962</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">123.279650</span>};
+        <span style="color: #008800; font-weight: bold">var</span> statue <span style="color: #333333">=</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">40.69034677176927</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">74.0463689672561</span>};
+        <span style="color: #008800; font-weight: bold">var</span> canyon <span style="color: #333333">=</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">36.10111723671108</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">112.0954389500144</span>}
+        <span style="color: #008800; font-weight: bold">var</span> coordinates <span style="color: #333333">=</span> [osu, statue, canyon];
+        <span style="color: #008800; font-weight: bold">var</span> pos <span style="color: #333333">=</span> coordinates[(<span style="color: #007020">Math</span>.floor(<span style="color: #007020">Math</span>.random()<span style="color: #333333">*</span>coordinates.length))]
+        <span style="color: #008800; font-weight: bold">var</span> panorama <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> google.maps.StreetViewPanorama(
           <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;map&#39;</span>), {
-            position<span style="color: #333333">:</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">44.5638</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">123.2794</span>},
+            position<span style="color: #333333">:</span> pos,
             pov<span style="color: #333333">:</span> {
               heading<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">34</span>,
               pitch<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">10</span>
             }
-          });
+        });
+        <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;coordinates&quot;</span>).innerHTML <span style="color: #333333">=</span> pos.lat;
+        <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;coordinates&quot;</span>).innerHTML <span style="color: #333333">+=</span> pos.lng;
     }
 <span style="color: #007700">&lt;/script&gt;</span>
 
