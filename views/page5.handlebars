@@ -78,7 +78,7 @@
         event.preventDefault();
         document.getElementById("form").style += "display: none";
         var guess = document.getElementById("guess").value;
-        var answer = document.getElementById("answer").value;
+        var answer = document.getElementById("answer").innerHTML;
         if (guess == answer){
             document.getElementById("results").innerHTML = "<h1>You got it!</h1>";
         } else {
