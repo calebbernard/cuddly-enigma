@@ -6,6 +6,9 @@
 
 <div class="tutorial">
     In this step, we polish the UI a bit. For instance, we get rid of that pesky address block giving away the location. Furthermore, we could remove the arrow prompts showing you possible move options, but I chose not to here since those are the only way to navigate the map on mobile. However, since they can give street names away, I will show you how to hide them if you want, along with other UI features.<br />
+    
+</div>
+<div class="tutorial">
     In addition, we'll randomize the heading so that we're pointing in a random direction every time. We don't need to randomize the pitch as far as I'm concerned since it already has you looking at a reasonable angle, but you can randomize it in the same way we do heading. (Pitch ranges from 90 which is straight up to -90, straight down).
     
     Our code is now:
@@ -55,6 +58,8 @@
             linksControl is in charge of whether those arrows appear. Uncomment it to get rid of them. It's still possible to navigate on a computer by clicking where you want to go, but I couldn't get that to work on my iPhone.
         </li>
     </ul>
+</div>
+<div class="tutorial">
     If you want to get rid of all the UI elements possible, you can simply uncomment the disableDefaultUI line. It also allows you to pass in individual UI elements as true afterwards, so that could be handy if you only want 1 element - just set disableDefaultUI to true, and then also set the one element you want to keep to true as well.<br />
 </div>
 
