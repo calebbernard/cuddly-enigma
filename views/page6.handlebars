@@ -71,7 +71,7 @@
         document.getElementById("answer").innerHTML += pos.name;
     }
     
-    function check_guess(){
+    function check_guess(event){
         event.preventDefault();
         document.getElementById("form").style = "display: none";
         var guess = document.getElementById("guess").value;
