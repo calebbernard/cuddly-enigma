@@ -5,32 +5,35 @@
 <h2>Page 4 - Polishing our Map</h2>
 
 <div class="tutorial">
-    Street View is a go! The next step in our imitation Geoguessr game is to randomize your location. Now, accurately imitating Geoguessr on this point is far beyond the scope of this project, since street view fails to load unless the coordinates you randomly give it are actually on a street, and deciding what coordinates are streets and what aren't requires data that I just don't have access to.<br />
-    My workaround is simple: We'll hardcode in a set of valid coordinates, which are randomly chosen from.
-</div>
-
-<div class="tutorial">
-    I chose three coordinates as a test set for this stage of our code. They represent the OSU campus, Liberty Island, and the Grand Canyon. Feel free to refresh this page until you have seen all three possibilities.<br />
-    After having chosen these locations, I went to <a href="http://maps.google.com">Google Maps</a> and found each location, then went to street view by clicking the yellow person and then on a suitable street in my desired location. Then I hit the "drop a pin" button, and found the coordinates of the pin. These are then loaded into an array of positions in our code, and the javascript Math.random() function chooses a set of coordinates at random, then passes it into the google maps panorama parameters.
+    In this step, we polish the UI a bit. For instance, we get rid of that pesky address block giving away the location. Furthermore, we could remove the arrow prompts showing you possible move options, but I chose not to here since those are the only way to navigate the map on mobile. However, since they can give street names away, I will show you how to hide them if you want, along with other UI features.<br />
+    In addition, we'll randomize the heading so that we're pointing in a random direction every time. We don't need to randomize the pitch as far as I'm concerned since it already has you looking at a reasonable angle, but you can randomize it in the same way we do heading. (Pitch ranges from 90 which is straight up to -90, straight down).
     
     Our code is now:
 </div>
-    
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;map&quot;</span><span style="color: #007700">&gt;&lt;/div&gt;</span>
+
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;map&quot;</span><span style="color: #007700">&gt;&lt;/div&gt;</span>
+
 <span style="color: #007700">&lt;script&gt;</span>
     <span style="color: #008800; font-weight: bold">function</span> initMap(){
         <span style="color: #008800; font-weight: bold">var</span> osu <span style="color: #333333">=</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">44.561962</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">123.279650</span>};
         <span style="color: #008800; font-weight: bold">var</span> statue <span style="color: #333333">=</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">40.69034677176927</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">74.0463689672561</span>};
         <span style="color: #008800; font-weight: bold">var</span> canyon <span style="color: #333333">=</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">36.10111723671108</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">112.0954389500144</span>}
         <span style="color: #008800; font-weight: bold">var</span> coordinates <span style="color: #333333">=</span> [osu, statue, canyon];
-        <span style="color: #008800; font-weight: bold">var</span> pos <span style="color: #333333">=</span> coordinates[(<span style="color: #007020">Math</span>.floor(<span style="color: #007020">Math</span>.random()<span style="color: #333333">*</span>coordinates.length))]
+        <span style="color: #008800; font-weight: bold">var</span> pos <span style="color: #333333">=</span> coordinates[(<span style="color: #007020">Math</span>.floor(<span style="color: #007020">Math</span>.random()<span style="color: #333333">*</span>coordinates.length))];
+        <span style="color: #008800; font-weight: bold">var</span> dir <span style="color: #333333">=</span> <span style="color: #007020">Math</span>.floor(<span style="color: #007020">Math</span>.random()<span style="color: #333333">*</span><span style="color: #0000DD; font-weight: bold">360</span>);
         <span style="color: #008800; font-weight: bold">var</span> panorama <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> google.maps.StreetViewPanorama(
           <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;map&#39;</span>), {
             position<span style="color: #333333">:</span> pos,
             pov<span style="color: #333333">:</span> {
-              heading<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">34</span>,
+              heading<span style="color: #333333">:</span> dir,
               pitch<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">10</span>
-            }
+            },
+            addressControl<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">false</span>,
+            <span style="color: #888888">//linksControl: false,</span>
+            <span style="color: #888888">//imageDateControl: false,</span>
+            <span style="color: #888888">//panControl: false,</span>
+            <span style="color: #888888">//zoomControl: false,</span>
+            <span style="color: #888888">//disableDefaultUI: true</span>
         });
     }
 <span style="color: #007700">&lt;/script&gt;</span>
@@ -39,15 +42,26 @@
 <span style="color: #0000CC">async</span> <span style="color: #0000CC">defer</span><span style="color: #007700">&gt;&lt;/script&gt;</span>
 </pre></div>
 
+<div class="tutorial">
+    What we've done here is:
+    <ul>
+        <li>
+            Put the heading in a var which is randomized among 360 options, then passed in that var for the parameter
+        </li>
+        <li>
+            Added commented-out parameters. If you uncomment any of those, it will disable that UI element in the panorama.
+        </li>
+    </ul>
+    If you want to get rid of all the UI elements possible, you can simply uncomment the disableDefaultUI line. It also allows you to pass in individual UI elements as true afterwards, so that could be handy if you only want 1 element - just set disableDefaultUI to true, and then also set the one element you want to keep to true as well.<br />
+</div>
 
-
-
+<div class="tutorial">
+    At this point, the code is looking good. The final element we need is an option for the user to be able to make a guess once they figure out where they are, and then be told whether they win or lose.
+</div>
     
 </div>
 
 <div id="map"></div>
-
-<div id="coordinates" style="display: none"></div>
 
 <div class="container">
 
@@ -77,10 +91,12 @@
               pitch: 10
             },
             addressControl: false,
-            //linksControl: false
+            //linksControl: false,
+            //imageDateControl: false,
+            //panControl: false,
+            //zoomControl: false,
+            //disableDefaultUI: true
         });
-        document.getElementById("coordinates").innerHTML = pos.lat;
-        document.getElementById("coordinates").innerHTML += pos.lng;
     }
 </script>
 
