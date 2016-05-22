@@ -105,23 +105,30 @@
 
 <div>
     <form id="form" action="" method="GET">
-        <select id="guess">
-        </select>
-        <input type="submit" id="submit" />
-    </form>
+            <div class="form-group">
+                <label for="guess">Enter your guess:</label>
+                <select id="guess" class="form-control" name="guess">
+                </select>
+                <input name="submit" class="form-control" type="submit" id="submit" />
+            </div>
+        </form>
 </div>
     
 <div id="answer" style="display: none"></div>
 
 <div id="results"></div>
     
-<div class="nav">
+<div class="row">
+    <div class="nav">
     <a href="/page4">Previous Page</a>
-</div>
+    </div>
 
-<div class="nav">
-    <a href="/page6">Next Page</a><br /><br />
+    <div class="nav">
+        <a href="/page6">Next Page</a><br /><br />
+    </div>
 </div>
+    
+
     
 </div>
 
@@ -165,9 +172,9 @@
         var guess = document.getElementById("guess").value;
         var answer = document.getElementById("answer").innerHTML;
         if (guess == answer){
-            document.getElementById("results").innerHTML = "<h1>You got it!</h1><div><form action='/page5' method='GET'><input type='submit' value='Try Again' /></form></div>";
+            document.getElementById("results").innerHTML = "<h1>You got it!</h1><div><form action='/page5' method='GET'><div class='form-group'><input type='submit' class='form-control' value='Try Again' /></div></form></div>";
         } else {
-            document.getElementById("results").innerHTML = "<h1>You failed...</h1><div><form action='/page5' method='GET'><input type='submit' value='Try Again' /></form></div>";
+            document.getElementById("results").innerHTML = "<h1>You failed...</h1><div><form action='/page5' method='GET'><div class='form-group'><input type='submit' class='form-control' value='Try Again' /></div></form></div>";
         }
     }
 </script>
