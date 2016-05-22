@@ -56,7 +56,7 @@
 <script>
     function initMap(){
         var coordinates = [{lat: 44.561962, lng: -123.279650}, {lat: 40.69034677176927, lng: -74.0463689672561}, {lat: 36.10111723671108, lng: -112.0954389500144}];
-        var pos = coordinates[(Math.random()*3)]
+        var pos = coordinates[(Math.floor(Math.random()*3))]
         var panorama = new google.maps.StreetViewPanorama(
           document.getElementById('map'), {
             position: pos,
