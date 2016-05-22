@@ -2,11 +2,11 @@
 
 <h1>Google Maps API How-to Guide</h1>
 
-<h2>Page 2 - Getting into Street View</h2>
+<h2>Page 3 - Randomizing our Location</h2>
 
 <div class="tutorial">
-    So we know how to embed a map, resize it, and pass it basic parameters.<br />
-    But for our goals, we want to use the street view feature rather than the traditional map.<br />
+    Street View is a go! The next step in our imitation Geoguessr game is to randomize your location. Now, accurately imitating Geoguessr on this point is far beyond the scope of this project, since street view fails to load unless the coordinates you randomly give it are actually on a street, and deciding what coordinates are streets and what aren't requires data that I just don't have access to.<br />
+    My workaround is simple: We'll hardcode in a set of valid coordinates, which are randomly chosen from.
 </div>
 
 <div class="tutorial">
@@ -39,16 +39,16 @@
 
 <div id="map"></div>
 
-<div id="coordinates"></div>
+<div id="coordinates" style="display: none"></div>
 
 <div class="container">
 
 <div class="nav">
-    <a href="/page1">Previous Page</a>
+    <a href="/page2">Previous Page</a>
 </div>
 
 <div class="nav">
-    <a href="/page3">Next Page</a>
+    <a href="/page4">Next Page</a>
 </div>
     
 </div>
@@ -56,7 +56,7 @@
 <script>
     function initMap(){
         var coordinates = [{lat: 44.561962, lng: -123.279650}, {lat: 40.69034677176927, lng: -74.0463689672561}, {lat: 36.10111723671108, lng: -112.0954389500144}];
-        var pos = coordinates[(Math.floor(Math.random()*3))]
+        var pos = coordinates[(Math.floor(Math.random()*coordinates.length()))]
         var panorama = new google.maps.StreetViewPanorama(
           document.getElementById('map'), {
             position: pos,
