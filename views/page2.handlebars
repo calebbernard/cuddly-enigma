@@ -7,7 +7,7 @@
     But for our goals, we want to use the street view feature rather than the traditional map.<br />
 </div>
 
-<div id="pano"></div>
+<div id="map"></div>
 
 <div class="nav">
     <a href="/page1">Previous Page</a>
@@ -19,7 +19,7 @@
 <script>
 
       var panorama = new google.maps.StreetViewPanorama(
-          document.getElementById('pano'), {
+          document.getElementById('map'), {
             position: {lat: 44.5638, lng: -123.2794},
             pov: {
               heading: 34,
