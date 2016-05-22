@@ -22,7 +22,7 @@
     <form id="form" action="" method="GET">
         <select id="guess">
         </select>
-        <input type="submit" />
+        <input type="submit" id="submit" />
     </form>
 </div>
     
@@ -41,6 +41,11 @@
 </div>
 
 <script>
+    
+    document.addEventListener("DOMContentLoaded", function(event) {
+        document.getElementById("submit").addEventListener("click", check_guess);
+    });
+    
     function initMap(){
         var osu = {name: "OSU Campus", coord: {lat: 44.561962, lng: -123.279650}};
         var statue = {name: "Liberty Island", coord: {lat: 40.69034677176927, lng: -74.0463689672561}};
