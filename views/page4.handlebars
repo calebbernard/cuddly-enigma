@@ -2,7 +2,7 @@
 
 <h1>Google Maps API How-to Guide</h1>
 
-<h2>Page 3 - Randomizing our Location</h2>
+<h2>Page 4 - Polishing our Map</h2>
 
 <div class="tutorial">
     Street View is a go! The next step in our imitation Geoguessr game is to randomize your location. Now, accurately imitating Geoguessr on this point is far beyond the scope of this project, since street view fails to load unless the coordinates you randomly give it are actually on a street, and deciding what coordinates are streets and what aren't requires data that I just don't have access to.<br />
@@ -75,7 +75,8 @@
             pov: {
               heading: dir,
               pitch: 10
-            }
+            },
+            addressControl: false
         });
         document.getElementById("coordinates").innerHTML = pos.lat;
         document.getElementById("coordinates").innerHTML += pos.lng;
