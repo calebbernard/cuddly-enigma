@@ -12,6 +12,69 @@
     Naturally, it'd be ideal from a DRY perspective to have our coordinate array for the map and the guessing list for the user to both draw from the same source. For this reason, I'm going to modify our coordinate structure a bit.
 </div>
     
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div&gt;</span>
+    <span style="color: #007700">&lt;form</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;form&quot;</span> <span style="color: #0000CC">action=</span><span style="background-color: #fff0f0">&quot;&quot;</span> <span style="color: #0000CC">method=</span><span style="background-color: #fff0f0">&quot;GET&quot;</span><span style="color: #007700">&gt;</span>
+        <span style="color: #007700">&lt;select</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;guess&quot;</span><span style="color: #007700">&gt;</span>
+        <span style="color: #007700">&lt;/select&gt;</span>
+        <span style="color: #007700">&lt;input</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;submit&quot;</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;submit&quot;</span> <span style="color: #007700">/&gt;</span>
+    <span style="color: #007700">&lt;/form&gt;</span>
+<span style="color: #007700">&lt;/div&gt;</span>
+    
+<span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;answer&quot;</span> <span style="color: #0000CC">style=</span><span style="background-color: #fff0f0">&quot;display: none&quot;</span><span style="color: #007700">&gt;&lt;/div&gt;</span>
+
+<span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;results&quot;</span><span style="color: #007700">&gt;&lt;/div&gt;</span>
+
+<span style="color: #007700">&lt;script&gt;</span>
+    
+    <span style="color: #007020">document</span>.addEventListener(<span style="background-color: #fff0f0">&quot;DOMContentLoaded&quot;</span>, <span style="color: #008800; font-weight: bold">function</span>(event) {
+        <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;submit&quot;</span>).addEventListener(<span style="background-color: #fff0f0">&quot;click&quot;</span>, check_guess);
+    });
+    
+    <span style="color: #008800; font-weight: bold">function</span> initMap(){
+        <span style="color: #008800; font-weight: bold">var</span> osu <span style="color: #333333">=</span> {name<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;OSU Campus&quot;</span>, coord<span style="color: #333333">:</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">44.561962</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">123.279650</span>}};
+        <span style="color: #008800; font-weight: bold">var</span> statue <span style="color: #333333">=</span> {name<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;Liberty Island&quot;</span>, coord<span style="color: #333333">:</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">40.69034677176927</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">74.0463689672561</span>}};
+        <span style="color: #008800; font-weight: bold">var</span> canyon <span style="color: #333333">=</span>{name<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;Grand Canyon&quot;</span>, coord<span style="color: #333333">:</span> {lat<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">36.10111723671108</span>, lng<span style="color: #333333">:</span> <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">112.0954389500144</span>}};
+        <span style="color: #008800; font-weight: bold">var</span> coordinates <span style="color: #333333">=</span> [osu, statue, canyon];
+        <span style="color: #008800; font-weight: bold">var</span> pos <span style="color: #333333">=</span> coordinates[(<span style="color: #007020">Math</span>.floor(<span style="color: #007020">Math</span>.random()<span style="color: #333333">*</span>coordinates.length))];
+        <span style="color: #008800; font-weight: bold">var</span> pos_coord <span style="color: #333333">=</span> pos.coord;
+        <span style="color: #008800; font-weight: bold">var</span> dir <span style="color: #333333">=</span> <span style="color: #007020">Math</span>.floor(<span style="color: #007020">Math</span>.random()<span style="color: #333333">*</span><span style="color: #0000DD; font-weight: bold">360</span>);
+        <span style="color: #008800; font-weight: bold">var</span> panorama <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> google.maps.StreetViewPanorama(
+          <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;map&#39;</span>), {
+            position<span style="color: #333333">:</span> pos_coord,
+            pov<span style="color: #333333">:</span> {
+              heading<span style="color: #333333">:</span> dir,
+              pitch<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">10</span>
+            },
+            addressControl<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">false</span>,
+            <span style="color: #888888">//linksControl: false,</span>
+            <span style="color: #888888">//imageDateControl: false,</span>
+            <span style="color: #888888">//panControl: false,</span>
+            <span style="color: #888888">//zoomControl: false,</span>
+            <span style="color: #888888">//disableDefaultUI: true</span>
+        });
+        <span style="color: #008800; font-weight: bold">for</span> (x <span style="color: #008800; font-weight: bold">in</span> coordinates) {
+            <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;guess&quot;</span>).innerHTML <span style="color: #333333">+=</span> <span style="background-color: #fff0f0">&quot;&lt;option value=&quot;</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;&#39;&quot;</span> <span style="color: #333333">+</span> coordinates[x].name <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;&#39;&quot;</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;&gt;&quot;</span> <span style="color: #333333">+</span> coordinates[x].name <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;&lt;/option&gt;&quot;</span>
+        }
+        <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;answer&quot;</span>).innerHTML <span style="color: #333333">+=</span> pos.name;
+    }
+    
+    <span style="color: #008800; font-weight: bold">function</span> check_guess(){
+        event.preventDefault();
+        <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;form&quot;</span>).style <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;display: none&quot;</span>;
+        <span style="color: #008800; font-weight: bold">var</span> guess <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;guess&quot;</span>).value;
+        <span style="color: #008800; font-weight: bold">var</span> answer <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;answer&quot;</span>).innerHTML;
+        <span style="color: #008800; font-weight: bold">if</span> (guess <span style="color: #333333">==</span> answer){
+            <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;results&quot;</span>).innerHTML <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&lt;h1&gt;You got it!&lt;/h1&gt;&lt;div&gt;&lt;form action=&#39;/page5&#39; method=&#39;GET&#39;&gt;&lt;input type=&#39;submit&#39; value=&#39;Try Again&#39; /&gt;&lt;/form&gt;&lt;/div&gt;&quot;</span>;
+        } <span style="color: #008800; font-weight: bold">else</span> {
+            <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;results&quot;</span>).innerHTML <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&lt;h1&gt;You failed...&lt;/h1&gt;&lt;div&gt;&lt;form action=&#39;/page5&#39; method=&#39;GET&#39;&gt;&lt;input type=&#39;submit&#39; value=&#39;Try Again&#39; /&gt;&lt;/form&gt;&lt;/div&gt;&quot;</span>;
+        }
+    }
+<span style="color: #007700">&lt;/script&gt;</span>
+
+<span style="color: #007700">&lt;script </span><span style="color: #0000CC">src=</span><span style="background-color: #fff0f0">&quot;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&quot;</span> <span style="color: #0000CC">async</span> <span style="color: #0000CC">defer</span><span style="color: #007700">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+
 </div>
 
 <div id="map"></div>
