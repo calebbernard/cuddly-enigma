@@ -26,9 +26,7 @@
     </form>
 </div>
     
-<div id="answer"></div>
-    
-<div id="test"></div>
+<div id="answer" style="display: none"></div>
 
 <div id="results"></div>
     
@@ -80,7 +78,6 @@
         event.preventDefault();
         document.getElementById("form").style = "display: none";
         var guess = document.getElementById("guess").value;
-        document.getElementById("test").innerHTML = guess;
         var answer = document.getElementById("answer").innerHTML;
         if (guess == answer){
             document.getElementById("results").innerHTML = "<h1>You got it!</h1>";
